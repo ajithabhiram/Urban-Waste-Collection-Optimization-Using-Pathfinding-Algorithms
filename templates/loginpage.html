@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login page for Garbage Route Optimization system">
+  <title>Login - Garbage Route Optimization</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #4CAF50, #2196F3);
+    }
+
+    .login-container {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 420px;
+      margin: 1rem;
+      animation: fadeIn 0.5s ease-in;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+    }
+
+    button {
+      padding: 0.9rem;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      background: #45a049;
+      transform: translateY(-2px);
+    }
+
+    button:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+    }
+
+    .loading::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #fff;
+      border-top: 3px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    #error-message {
+      color: #e74c3c;
+      text-align: center;
+      min-height: 1.5rem;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #error-message.show {
+      opacity: 1;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .register-link a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 1.8rem;
+        margin: 0.8rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      input, button {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container" role="main">
+    <h2>Login</h2>
+    <form id="loginForm" aria-label="Login form">
+      <div class="form-group">
+        <input 
+          type="text" 
+          id="username" 
+          placeholder="Username" 
+          required 
+          aria-required="true"
+          aria-label="Username"
+          autocomplete="username"
+        >
+      </div>
+      <div class="form-group">
+        <input 
+          type="password" 
+          id="password" 
+          placeholder="Password" 
+          required 
+          aria-required="true"
+          aria-label="Password"
+          autocomplete="current-password"
+        >
+        <span 
+          class="password-toggle" 
+          onclick="togglePassword()" 
+          aria-label="Toggle password visibility"
+          role="button"
+          tabindex="0"
+        >👁️</span>
+      </div>
+      <button type="submit" id="loginButton">Login</button>
+      <p id="error-message" role="alert"></p>
+    </form>
+    <div class="register-link">
+      Don't have an account? <a href="register.html">Register here</a>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const loginForm = document.getElementById('loginForm');
+      const loginButton = document.getElementById('loginButton');
+      const errorMessage = document.getElementById('error-message');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+
+      // Generate CSRF token (placeholder - should be server-generated)
+      const csrfToken = 'mock-csrf-token-' + Math.random().toString(36).substr(2);
+
+      // Password visibility toggle
+      window.togglePassword = function() {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+      };
+
+      // Handle Enter key for password toggle
+      document.querySelector('.password-toggle').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          togglePassword();
+        }
+      });
+
+      loginForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        // Reset error message
+        errorMessage.textContent = '';
+        errorMessage.classList.remove('show');
+
+        // Validate inputs
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!username || !password) {
+          showError('Please fill in all fields');
+          return;
+        }
+
+        // Show loading state
+        loginButton.disabled = true;
+        loginButton.classList.add('loading');
+        loginButton.textContent = '';
+
+        try {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          // Check credentials against localStorage
+          const users = JSON.parse(localStorage.getItem('users') || '{}');
+          const user = users[username];
+
+          if (user && user.password === password) {
+            // Store session token
+            localStorage.setItem('sessionToken', 'mock-token-' + Date.now());
+            
+            // Redirect to dashboard
+            window.location.href = 'http://127.0.0.1:5001/';
+          } else {
+            showError('Invalid username or password');
+          }
+        } catch (error) {
+          showError('An error occurred. Please try again.');
+        } finally {
+          // Reset button state
+          loginButton.disabled = false;
+          loginButton.classList.remove('loading');
+          loginButton.textContent = 'Login';
+        }
+      });
+
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add('show');
+        
+        // Auto-clear error after 5 seconds
+        setTimeout(() => {
+          errorMessage.textContent = '';
+          errorMessage.classList.remove('show');
+        }, 5000);
+      }
+
+      // Check for existing session
+      if (localStorage.getItem('sessionToken')) {
+        // Optionally verify token with server
+        // window.location.href = 'http://127.0.0.1:5000';
+      }
+
+      // Focus on username input when page loads
+      usernameInput.focus();
+    })();
+  </script>
+</body>
+</html>

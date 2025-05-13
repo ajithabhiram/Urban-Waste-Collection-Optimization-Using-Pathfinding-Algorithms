@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garbage Collection Route Planner - Optimize Waste Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-green-50 to-teal-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-teal-500 text-white py-4 shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl sm:text-3xl font-bold flex items-center gap-2">
+                    <span>🚛</span> Route Planner
+                </h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#features" class="text-white hover:text-teal-200 transition">Features</a>
+                <a href="#faq" class="text-white hover:text-teal-200 transition">FAQ</a>
+                <a href="#contact" class="text-white hover:text-teal-200 transition">Contact</a>
+            </nav>
+            <div class="flex space-x-4">
+                <a href="loginpage.html" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition">Log In</a>
+                <a href="loginpage.html" class="bg-teal-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-teal-700 transition">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-6">
+                Optimize Garbage Collection with Smart Routing
+            </h2>
+            <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                Plan efficient routes for waste management using advanced algorithms to reduce fuel consumption, CO2 emissions, and operational costs.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="loginpage.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold text-lg hover:bg-blue-700 transition shadow-md">
+                    Get Started Now
+                </a>
+                <a href="#features" class="bg-transparent border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold text-lg hover:bg-blue-600 hover:text-white transition">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-semibold text-gray-800 text-center mb-12">
+                Why Choose Our Route Planner?
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-blue-600 text-3xl mb-4">📍</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Advanced Algorithms</h3>
+                    <p class="text-gray-600">
+                        Utilize algorithms like Nearest Neighbor, Dijkstra, Bellman-Ford, Johnson's, Floyd-Warshall, and Ant Colony Optimization for optimal routes.
+                    </p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-blue-600 text-3xl mb-4">🌍</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Interactive Maps</h3>
+                    <p class="text-gray-600">
+                        Visualize routes with Folium-powered maps, showing garbage levels and disposal points for clear decision-making.
+                    </p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-blue-600 text-3xl mb-4">📊</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Performance Metrics</h3>
+                    <p class="text-gray-600">
+                        Compare path length, fuel consumption, CO2 emissions, execution time, and trips to the disposal point.
+                    </p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-blue-600 text-3xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Capacity Management</h3>
+                    <p class="text-gray-600">
+                        Account for truck capacity constraints, ensuring efficient trips to the disposal point when full.
+                    </p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-blue-600 text-3xl mb-4">🌱</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Eco-Friendly</h3>
+                    <p class="text-gray-600">
+                        Minimize environmental impact by optimizing routes to reduce fuel usage and emissions.
+                    </p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-6 shadow-md hover:shadow-lg transition">
+                    <div class="text-blue-600 text-3xl mb-4">🔒</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Secure & Scalable</h3>
+                    <p class="text-gray-600">
+                        Built with Flask and Python, offering a secure and scalable solution for cities of all sizes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-semibold text-gray-800 text-center mb-12">
+                Frequently Asked Questions
+            </h2>
+            <div class="space-y-6 max-w-3xl mx-auto">
+                <div class="bg-white rounded-lg p-6 shadow-md">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                        What is the Garbage Collection Route Planner?
+                    </h3>
+                    <p class="text-gray-600">
+                        It's a web-based tool that optimizes garbage collection routes using advanced algorithms, helping reduce costs and environmental impact.
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-md">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                        Which algorithms are used?
+                    </h3>
+                    <p class="text-gray-600">
+                        The planner uses Nearest Neighbor, Dijkstra, Bellman-Ford, Johnson's, Floyd-Warshall, and Ant Colony Optimization algorithms.
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-md">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                        How does it handle truck capacity?
+                    </h3>
+                    <p class="text-gray-600">
+                        The system tracks garbage collected and routes the truck to the disposal point when capacity is exceeded, ensuring efficient operations.
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-md">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                        Is it free to use?
+                    </h3>
+                    <p class="text-gray-600">
+                        We offer a free tier with basic features. Sign up to explore premium features for larger-scale operations.
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-md">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                        Can I integrate it with my existing systems?
+                    </h3>
+                    <p class="text-gray-600">
+                        Yes, our API (available soon) will allow integration with your waste management systems. Contact us for details.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="py-16 bg-white/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-semibold text-gray-800 text-center mb-12">
+                Get in Touch
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <p class="text-gray-600 mb-4">
+                        Have questions or need support? Reach out to our team, and we'll get back to you promptly.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><strong>Email:</strong> <a href="mailto:support@routeplanner.com" class="text-blue-600 hover:underline">support@routeplanner.com</a></li>
+                        <li><strong>Phone:</strong> +1-800-123-4567</li>
+                        <li><strong>Address:</strong> 123 Green City Ave, Bangalore, India</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Send Us a Message</h3>
+                    <form action="/contact" method="POST" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            >
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            >
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="4"
+                                required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            ></textarea>
+                        </div>
+                        <button
+                            type="submit"
+                            class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                        >
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-teal-500 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-6">
+                Ready to Revolutionize Waste Management?
+            </h2>
+            <p class="text-lg sm:text-xl mb-8 max-w-3xl mx-auto">
+                Join thousands of cities optimizing their garbage collection with our smart routing solution.
+            </p>
+            <a
+                href="loginpage.html"
+                class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition shadow-md"
+            >
+                Get Started for Free
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-base">Made with ❤️ to revolutionize waste management.</p>
+            <p class="mt-2 text-sm">
+                <a href="#contact" class="text-teal-300 hover:text-teal-200 transition">Contact Us</a> |
+                <a href="/privacy" class="text-teal-300 hover:text-teal-200 transition">Privacy Policy</a> |
+                <a href="/terms" class="text-teal-300 hover:text-teal-200 transition">Terms of Service</a>
+            </p>
+            <p class="mt-2 text-sm">&copy; 2025 Garbage Collection Route Planner. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

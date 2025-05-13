@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Registration page for Garbage Route Optimization system">
+  <title>Register - Garbage Route Optimization</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #4CAF50, #2196F3);
+    }
+
+    .register-container {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 420px;
+      margin: 1rem;
+      animation: fadeIn 0.5s ease-in;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #4CAF50;
+      box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+    }
+
+    button {
+      padding: 0.9rem;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      background: #45a049;
+      transform: translateY(-2px);
+    }
+
+    button:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+    }
+
+    .loading::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #fff;
+      border-top: 3px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    #error-message, #success-message {
+      text-align: center;
+      min-height: 1.5rem;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #error-message {
+      color: #e74c3c;
+    }
+
+    #success-message {
+      color: #4CAF50;
+    }
+
+    #error-message.show, #success-message.show {
+      opacity: 1;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .login-link a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .register-container {
+        padding: 1.8rem;
+        margin: 0.8rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      input, button {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container" role="main">
+    <h2>Register</h2>
+    <form id="registerForm" aria-label="Registration form">
+      <div class="form-group">
+        <input 
+          type="text" 
+          id="username" 
+          placeholder="Username" 
+          required 
+          aria-required="true"
+          aria-label="Username"
+          autocomplete="username"
+        >
+      </div>
+      <div class="form-group">
+        <input 
+          type="password" 
+          id="password" 
+          placeholder="Password" 
+          required 
+          aria-required="true"
+          aria-label="Password"
+          autocomplete="new-password"
+        >
+        <span 
+          class="password-toggle" 
+          onclick="togglePassword()" 
+          aria-label="Toggle password visibility"
+          role="button"
+          tabindex="0"
+        >👁️</span>
+      </div>
+      <div class="form-group">
+        <input 
+          type="password" 
+          id="confirm-password" 
+          placeholder="Confirm Password" 
+          required 
+          aria-required="true"
+          aria-label="Confirm Password"
+          autocomplete="new-password"
+        >
+      </div>
+      <button type="submit" id="registerButton">Register</button>
+      <p id="error-message" role="alert"></p>
+      <p id="success-message" role="status"></p>
+    </form>
+    <div class="login-link">
+      Already have an account? <a href="loginpage.html">Login here</a>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const registerForm = document.getElementById('registerForm');
+      const registerButton = document.getElementById('registerButton');
+      const errorMessage = document.getElementById('error-message');
+      const successMessage = document.getElementById('success-message');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirm-password');
+
+      // Password visibility toggle
+      window.togglePassword = function() {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        confirmPasswordInput.type = type;
+        this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+      };
+
+      // Handle Enter key for password toggle
+      document.querySelector('.password-toggle').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          togglePassword();
+        }
+      });
+
+      registerForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        // Reset messages
+        errorMessage.textContent = '';
+        errorMessage.classList.remove('show');
+        successMessage.textContent = '';
+        successMessage.classList.remove('show');
+
+        // Validate inputs
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        if (!username || !password || !confirmPassword) {
+          showError('Please fill in all fields');
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          showError('Passwords do not match');
+          return;
+        }
+
+        if (password.length < 8) {
+          showError('Password must be at least 8 characters long');
+          return;
+        }
+
+        // Show loading state
+        registerButton.disabled = true;
+        registerButton.classList.add('loading');
+        registerButton.textContent = '';
+
+        try {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          // Check if username already exists
+          const users = JSON.parse(localStorage.getItem('users') || '{}');
+          if (users[username]) {
+            showError('Username already exists');
+            return;
+          }
+
+          // Store user data (in production, this should be hashed)
+          users[username] = {
+            password: password, // In production, use proper password hashing
+            createdAt: new Date().toISOString()
+          };
+          localStorage.setItem('users', JSON.stringify(users));
+
+          // Show success message
+          showSuccess('Registration successful! Redirecting to login...');
+
+          // Redirect to login after 2 seconds
+          setTimeout(() => {
+            window.location.href = 'loginpage.html';
+          }, 2000);
+        } catch (error) {
+          showError('An error occurred. Please try again.');
+        } finally {
+          // Reset button state
+          registerButton.disabled = false;
+          registerButton.classList.remove('loading');
+          registerButton.textContent = 'Register';
+        }
+      });
+
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.add('show');
+        
+        // Auto-clear error after 5 seconds
+        setTimeout(() => {
+          errorMessage.textContent = '';
+          errorMessage.classList.remove('show');
+        }, 5000);
+      }
+
+      function showSuccess(message) {
+        successMessage.textContent = message;
+        successMessage.classList.add('show');
+      }
+
+      // Focus on username input when page loads
+      usernameInput.focus();
+    })();
+  </script>
+</body>
+</html>
