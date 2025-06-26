@@ -77,7 +77,7 @@ Urban waste management is becoming increasingly complex with the growth of citie
 
 - **D. Abhiram**  
 - **K. Dhanush Reddy**  
-- **P. Koushik Reddy** – Contributed to model integration, evaluation, and presentation
+- **P.Koushik Reddy** – Contributed to model integration, evaluation and presentaion
 - **Pooja Gowda**  
 
 **Department of Computer Science and Engineering**  
